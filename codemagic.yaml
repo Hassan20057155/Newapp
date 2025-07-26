@@ -2,6 +2,7 @@ workflows:
   default-workflow:
     name: Build APK for Rewan
     environment:
+      flutter: stable
       groups:
         - keystore
     scripts:
