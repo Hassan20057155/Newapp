@@ -1,19 +1,13 @@
-
-name: rewan_app
-description: A new Flutter project.
-publish_to: 'none'
-version: 1.0.0+1
-
-environment:
-  sdk: ">=2.17.0 <3.0.0"
-
-dependencies:
-  flutter:
-    sdk: flutter
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-
-flutter:
-  uses-material-design: true
+workflows:
+  default-workflow:
+    name: Build APK for Rewan
+    environment:
+      groups:
+        - keystore
+    scripts:
+      - name: Build APK
+        script: |
+          flutter pub get
+          flutter build apk --release
+    artifacts:
+      - build/app/outputs/flutter-apk/app-release.apk
