@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -30,7 +29,7 @@ class MyHomePage extends StatelessWidget {
         title: const Text('Rewan App'),
       ),
       body: const Center(
-        child: Text('Hello from Rewan!'),
+        child: Image.asset('assets/images/logo.png'), // عرض الصورة
       ),
     );
   }
