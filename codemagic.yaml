@@ -1,35 +1,15 @@
 workflows:
-  rewan-release:
-    name: Rewan Release Build
-    max_build_duration: 60
+  default-workflow:
+    name: Build APK for Rewan
     environment:
-      flutter: stable
-      xcode: latest
-      android_signing:
-        - rewan_keystore
-      vars:
-        PACKAGE_NAME: "com.rewan.user"
+      groups:
+        - keystore
     scripts:
-      - name: Get dependencies
-        script: flutter pub get
-      - name: Clean project
-        script: flutter clean
+      - name: Decode keystore
+        script: echo $CM_KEYSTORE | base64 --decode > rewan_keystore.jks
       - name: Build APK
         script: |
-          flutter build apk --release \
-            --target-platform android-arm64 \
-            --split-per-abi
+          flutter pub get
+          flutter build apk --release --no-shrink
     artifacts:
-      - build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
-    publishing:
-      email:
-        recipients:
-          - your_ddddf5194@gmail.com # ← غيّر هذا للإيميل الذي تستلم عليه رابط التحميل
-
-android:
-  signing:
-    rewan_keystore:
-      keystore: Encrypted(base64 content of keystore)
-      keystore_password: Encrypted(your-keystore-password)
-      key_alias: Encrypted(your-key-alias)
-      key_password: Encrypted(your-key-password)
+      - build/app/outputs/flutter-apk/app-release.apk
