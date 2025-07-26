@@ -1,6 +1,5 @@
 name: rewan
 description: تطبيق Rewan لربح النقاط والإعلانات والسحب.
-
 version: 1.0.0+1
 
 environment:
@@ -29,8 +28,10 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
   assets:
     - assets/images/
+
   fonts:
     - family: Tajawal
       fonts:
